@@ -1,0 +1,22 @@
+﻿[*.cs]
+
+# Questo repository contiene esempi che fanno appositamente uso di sintassi non
+# ottimale a scopo dimostrativo; questo file disabilita warning e suggerimenti
+# da parte dell'IDE per utilizzare la sintassi ottimale.
+dotnet_diagnostic.CA1050.severity = none
+dotnet_diagnostic.CA1822.severity = none
+dotnet_diagnostic.CS0162.severity = none
+dotnet_diagnostic.CS0168.severity = none
+dotnet_diagnostic.CS0219.severity = none
+dotnet_diagnostic.CS1998.severity = none
+dotnet_diagnostic.CS8321.severity = none
+dotnet_diagnostic.IDE0028.severity = none
+dotnet_diagnostic.IDE0044.severity = none
+dotnet_diagnostic.IDE0051.severity = none
+dotnet_diagnostic.IDE0052.severity = none
+dotnet_diagnostic.IDE0057.severity = none
+dotnet_diagnostic.IDE0059.severity = none
+dotnet_diagnostic.IDE0060.severity = none
+dotnet_diagnostic.IDE0062.severity = none
+dotnet_diagnostic.IDE0063.severity = none
+dotnet_diagnostic.IDE0251.severity = none
