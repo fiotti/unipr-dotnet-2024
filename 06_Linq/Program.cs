@@ -4,6 +4,9 @@
 //
 // Questo meccanismo è chiamato Linq.
 //
+// Per ulteriori informazioni:
+// https://learn.microsoft.com/dotnet/csharp/linq/
+
 // Dato che tutte le "collection" (array, liste, ecc...) sono IEnumerable,
 // queste operazioni sono applicabili a tutte le "collection".
 

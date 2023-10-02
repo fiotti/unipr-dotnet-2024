@@ -140,3 +140,8 @@ struct MyStruct
 {
     public string ThisIsNull { get; set; }
 }
+
+
+
+// Per ulteriori informazioni:
+// https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/nullable-reference-types

@@ -42,7 +42,7 @@ builder.Services.AddHostedService<MainService>();
 
 // Una volta configurato il tutto, l'applicazione può essere eseguita:
 using IHost host = builder.Build();
-host.Run();
+await host.RunAsync();
 
 class MainService : BackgroundService
 {

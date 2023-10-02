@@ -108,5 +108,7 @@ public enum MyEnum
 // I parametri indicati nei record sono property "public".
 public record MyRecord(string Test);
 
+
+
 // Per ulteriori informazioni:
 // https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers

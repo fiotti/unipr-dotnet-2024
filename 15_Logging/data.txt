@@ -1,0 +1,10 @@
+﻿esempio riga 1
+riga 2
+Riga 3.
+riga 4...
+pippo
+pluto
+paperino
+
+riga 9!
+ultima riga

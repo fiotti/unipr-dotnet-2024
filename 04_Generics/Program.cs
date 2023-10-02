@@ -48,5 +48,7 @@ public class Tuple<T>
     }
 }
 
+
+
 // Per ulteriori informazioni:
 // https://learn.microsoft.com/dotnet/csharp/fundamentals/types/generics

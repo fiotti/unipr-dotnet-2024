@@ -26,23 +26,25 @@
 // È bene usare async in qualsiasi metodo che esegue operazioni di input/output.
 // Non è utile convertire in async un metodo che fa solo uso di CPU e memoria.
 
+// Per ulteriori informazioni:
+// https://learn.microsoft.com/dotnet/csharp/asynchronous-programming/async-scenarios
+
 
 
 // Un metodo è considerato "asincrono" se usa la parola chiave async e/o se
 // restituisce un Task oppure un ValueTask.
-using System.Threading;
 
 void Example1()
 {
-    // codice...
+    // Questo non è un metodo asincrono.
 }
 
 async void Example1Async()
 {
+    // Questo è un metodo asincrono.
+
     // Nota: non è MAI considerato buona pratica fare un metodo asincrono con
     // tipo di ritorno void. Questo metodo è solo di esempio.
-
-    // codice...
 }
 
 double Example2()
@@ -52,31 +54,26 @@ double Example2()
 
 async Task<double> Example2Async()
 {
-    // codice...
     return 12.34;
 }
 
 int Example3()
 {
-    // codice...
     return 123;
 }
 
 Task<int> Example3Async()
 {
-    // codice...
     return Task.FromResult(123);
 }
 
 string Example4()
 {
-    // codice...
     return "hello";
 }
 
 ValueTask<string> Example4Async()
 {
-    // codice...
     return ValueTask.FromResult("hello");
 }
 
@@ -130,7 +127,7 @@ async Task<string> GetPageAsync(string url, CancellationToken cancellationToken 
 {
     // Nota: la versione asincrona del codice seguente potrebbe essere scritta
     // in modo più semplice, ma ho cercato di tenerla il più simile possibile
-    // alla versione sincrona, per permettere un confronto uno a uno.
+    // alla versione sincrona, per permettere un confronto riga per riga.
 
     using HttpClient client = new();
 

@@ -143,3 +143,8 @@ static class MyLinq
         }
     }
 }
+
+
+
+// Per ulteriori informazioni:
+// https://learn.microsoft.com/dotnet/csharp/language-reference/statements/yield

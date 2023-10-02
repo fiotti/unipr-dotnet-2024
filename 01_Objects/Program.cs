@@ -215,16 +215,11 @@ public class MyRecord2
 
 
 
-// In C# sono previsti i seguenti modificatori di visibilità:
-// public       visibile ovunque
-// protected    visibile all’interno della stessa classe e sottoclassi
-// private      visibile solo all’interno della stessa classe
-// internal     visibile ovunque nello stesso assembly
-
-// Inoltre è possibile combinare "protected" ed "internal":
-// protected internal   visibile ovunque nello stesso assembly, e visibile nelle sottoclassi anche se sono definite in altri assembly
-
-// È possibile omettere i modificatori di visibilità, si applicano le seguenti regole:
-// Classi, interfacce, strutture, delegati, enum e record sono implicitamente "internal".
-// Metodi e property di un'interfaccia o enum sono implicitamente "public".
-// Campi, metodi e property di una classe o struttura sono implicitamente sono implicitamente "private".
+// C# è un linguaggio ad alto livello che mette a disposizione "syntax sugar"
+// per implementare funzionalità complesse con poco codice.
+//
+// Per esempio una property viene convertita in un campo più due metodi.
+//
+// Per vedere nel dettaglio come uno snippet di codice viene "de-sugared"
+// consiglio di utilizzare lo strumento open source SharpLab:
+// https://sharplab.io/
