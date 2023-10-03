@@ -33,7 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "13_Delegates", "13_Delegate
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "14_Exceptions", "14_Exceptions\14_Exceptions.csproj", "{F26F3D3E-2612-47CD-B235-A1166ED648C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15_Logging", "15_Logging\15_Logging.csproj", "{FC4702AB-92CE-4959-9272-9CA743F666A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "15_Logging", "15_Logging\15_Logging.csproj", "{FC4702AB-92CE-4959-9272-9CA743F666A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "16_Reflection", "16_Reflection\16_Reflection.csproj", "{45F55B09-CC20-4103-ACB7-3AA0C025BCE0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "17_Attributes", "17_Attributes\17_Attributes.csproj", "{B43FA74B-E311-4125-99D0-4BA0DDD039BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +109,14 @@ Global
 		{FC4702AB-92CE-4959-9272-9CA743F666A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC4702AB-92CE-4959-9272-9CA743F666A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC4702AB-92CE-4959-9272-9CA743F666A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45F55B09-CC20-4103-ACB7-3AA0C025BCE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F55B09-CC20-4103-ACB7-3AA0C025BCE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45F55B09-CC20-4103-ACB7-3AA0C025BCE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45F55B09-CC20-4103-ACB7-3AA0C025BCE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B43FA74B-E311-4125-99D0-4BA0DDD039BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B43FA74B-E311-4125-99D0-4BA0DDD039BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B43FA74B-E311-4125-99D0-4BA0DDD039BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B43FA74B-E311-4125-99D0-4BA0DDD039BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
