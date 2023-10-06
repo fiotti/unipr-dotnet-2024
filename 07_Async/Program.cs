@@ -151,7 +151,7 @@ async Task<string> GetPagesSequentialAsync(CancellationToken cancellationToken =
 {
     // Fa la prima chiamata HTTP ed attende una risposta.
     string home = await GetPageAsync("https://example.com", cancellationToken);
-    
+
     // Fa la seconda chiamata HTTP ed attende una risposta.
     string test = await GetPageAsync("https://example.com/test", cancellationToken);
 
@@ -173,8 +173,16 @@ async Task<string> GetPagesParallelAsync(CancellationToken cancellationToken = d
 
 
 
-// È possibile eseguire codice sincrono in un contesto asincrono:
-Task<string> SomeLegacyMethodAsync(CancellationToken cancellationToken = default)
+// Supponendo di avere un metodo legacy scrito con codice sincrono che non può
+// essere convertito in codice asincrono...
+string SomeLegacyMethod()
+{
+    // codice...
+    return "test";
+}
+
+// ...è possibile eseguire codice sincrono in un contesto asincrono:
+async Task<string> SomeLegacyMethodAsync(CancellationToken cancellationToken = default)
 {
     // Nota: non è MAI necessario e non è considerato buona pratica aggiungere
     // un metodo asincrono che fa il wrap della versione sincrona.
@@ -190,13 +198,7 @@ Task<string> SomeLegacyMethodAsync(CancellationToken cancellationToken = default
     // sincrono, il massimo che può fare è non lanciare l'operazione se rileva
     // che la richiesta è già stata cancellata quando questo codice parte.
 
-    return Task.Run(SomeLegacyMethod, cancellationToken);
-}
-
-string SomeLegacyMethod()
-{
-    // codice...
-    return "test";
+    return await Task.Run(SomeLegacyMethod, cancellationToken);
 }
 
 
@@ -204,7 +206,10 @@ string SomeLegacyMethod()
 // È anche possibile eseguire codice asincrono in un contesto sincrono:
 string GetPagesSequential()
 {
+    // Avvia la chiamata al metodo asincrono.
     Task<string> result = GetPagesParallelAsync();
+
+    // Attende sincronamente risposta (blocca il thread chiamante).
     return result.GetAwaiter().GetResult();
 }
 
@@ -214,3 +219,45 @@ string GetPagesSequential()
 // Task.Run(), Task.Wait() o Task.Result, e di non usare lock in codice
 // condiviso.
 // https://learn.microsoft.com/aspnet/core/fundamentals/best-practices#avoid-blocking-calls
+
+
+
+// È possibile usare il cancellation token per cancellare un'operazione
+// asincrona se il chiamante non è più interessato:
+async Task ProcessNumbersAsync(int[] numbers, CancellationToken cancellationToken = default)
+{
+    foreach (int number in numbers)
+    {
+        // Lancia "OperationCancelledException" se richiesta la cancellazione.
+        cancellationToken.ThrowIfCancellationRequested();
+
+        Console.WriteLine($"Processing {number}...");
+
+        // Simula operazione di lunga durata...
+        await Task.Delay(1000, cancellationToken);
+    }
+}
+
+int[] numbers = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+// Sorgente di cancellation token, che viene cancellato dopo 3 secondi.
+using CancellationTokenSource cts = new();
+cts.CancelAfter(TimeSpan.FromSeconds(3));
+
+try
+{
+    await ProcessNumbersAsync(numbers, cts.Token);
+}
+catch (OperationCanceledException)
+{
+    Console.WriteLine("Operation cancelled.");
+}
+
+// Nota: il cancellation token indica una "richiesta da parte del chiamante,
+// di cancellare l'operazione in corso". Trattasi solo di una richiesta, il
+// metodo chiamato non garantisce che la richiesta venga soddisfatta
+// immediatamente, anzi, non garantisce affatto alcuna cancellazione.
+//
+// È buona pratica accettare un cancellation token in tutti i metodi async, e
+// tenerne conto internamente per interrompere l'operazione in corso, ma il
+// chiamante non può dare per scontato che il chiamato adotti questa pratica.
