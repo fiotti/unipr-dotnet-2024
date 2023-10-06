@@ -6,17 +6,18 @@ public static class Program
     {
         SomeMethod();
         SomeMethod2();
+        SomeMethod3();
     }
 
     private static void SomeMethod()
     {
-        // Alloca "myObject" sulla heap.
+        // Alloca "myObject" sulla heap dato che il tipo della variabile è una classe.
         MyClass myObject = new(123);
 
         Console.WriteLine($"First: {myObject.Num}"); // 123
 
         // È possibile passare gli oggetti ai metodi, vengono passati per riferimento.
-        Hello(myObject);
+        HelloClass(myObject);
 
         Console.WriteLine($"Second: {myObject.Num}"); // 456
 
@@ -26,13 +27,13 @@ public static class Program
 
     private static void SomeMethod2()
     {
-        // Alloca "myValue" sullo stack.
+        // Alloca "myValue" sullo stack dato che il tipo della variabile è una struct.
         MyStruct myValue = new(123);
 
         Console.WriteLine($"Third: {myValue.Num}"); // 123
 
         // È possibile passare i valori ai metodi, ma ad ogni chiamata viene fatta una copia.
-        Hello2(myValue);
+        HelloStruct(myValue);
 
         Console.WriteLine($"Fourth: {myValue.Num}"); // 123 (e non 456)
 
@@ -40,15 +41,37 @@ public static class Program
         // Questa area di memoria non è più raggiungibile una volta usciti dal metodo.
     }
 
-    private static void Hello(MyClass obj)
+    private static void SomeMethod3()
+    {
+        // Alloca "myValue" sulla heap dato che il tipo della variabile è un'interfaccia.
+        IMyInterface myValue = new MyStruct(123);
+
+        Console.WriteLine($"Firth: {myValue.Num}"); // 123
+
+        HelloInterface(myValue);
+
+        Console.WriteLine($"Sixth: {myValue.Num}"); // 456
+    }
+
+    private static void HelloClass(MyClass obj)
     {
         obj.Num = 456;
     }
 
-    private static void Hello2(MyStruct val)
+    private static void HelloStruct(MyStruct val)
     {
         val.Num = 456;
     }
+
+    private static void HelloInterface(IMyInterface val)
+    {
+        val.Num = 456;
+    }
+}
+
+public interface IMyInterface
+{
+    int Num { get; set; }
 }
 
 public class MyClass
@@ -61,7 +84,7 @@ public class MyClass
     }
 }
 
-public struct MyStruct
+public struct MyStruct : IMyInterface
 {
     public int Num { get; set; }
 
