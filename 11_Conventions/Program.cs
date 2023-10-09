@@ -17,7 +17,7 @@ public class MyClass
 {
     // I nomi delle costanti devono essere in "PascalCase".
     public const int MyConstant = 42;
-    
+
     // I field devono sempre essere privati.
     private int _myValue;
 
