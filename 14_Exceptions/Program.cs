@@ -79,6 +79,47 @@ catch (Exception ex) when (ex.Message.StartsWith("This"))
 
 
 
+// Se è presente un blocco "finally", viene eseguito dopo il "try" e dopo il
+// "catch", prima di procedere con l'esecuzione.
+
+try
+{
+    Console.WriteLine("Try 1");
+}
+catch (Exception)
+{
+    Console.WriteLine("Catch 1");
+}
+finally
+{
+    Console.WriteLine("Finally 1");
+}
+
+// Output:
+// Try 1
+// Finally 1
+
+try
+{
+    Console.WriteLine("Try 2");
+    throw new Exception();
+}
+catch (Exception)
+{
+    Console.WriteLine("Catch 2");
+}
+finally
+{
+    Console.WriteLine("Finally 2");
+}
+
+// Output:
+// Try 2
+// Catch 2
+// Finally 2
+
+
+
 // Le eccezioni sono uno strumento di gestione degli errori; usare la parola
 // chiave "throw" comporta un elevato costo computazionale a runtime in quanto
 // in corrispondenza della "throw" viene letto ed interpretato l'intero stack
