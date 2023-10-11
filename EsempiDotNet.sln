@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "13_Delegates", "13_Delegate
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "14_Exceptions", "14_Exceptions\14_Exceptions.csproj", "{F26F3D3E-2612-47CD-B235-A1166ED648C2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "14b_ExceptionsCaveats", "14b_ExceptionsCaveats\14b_ExceptionsCaveats.csproj", "{798454DF-7C0B-48F0-85AB-9FAE5AA989E3}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "15_Logging", "15_Logging\15_Logging.csproj", "{FC4702AB-92CE-4959-9272-9CA743F666A2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "16_Reflection", "16_Reflection\16_Reflection.csproj", "{45F55B09-CC20-4103-ACB7-3AA0C025BCE0}"
@@ -109,6 +111,10 @@ Global
 		{F26F3D3E-2612-47CD-B235-A1166ED648C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F26F3D3E-2612-47CD-B235-A1166ED648C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F26F3D3E-2612-47CD-B235-A1166ED648C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{798454DF-7C0B-48F0-85AB-9FAE5AA989E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{798454DF-7C0B-48F0-85AB-9FAE5AA989E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{798454DF-7C0B-48F0-85AB-9FAE5AA989E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{798454DF-7C0B-48F0-85AB-9FAE5AA989E3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FC4702AB-92CE-4959-9272-9CA743F666A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FC4702AB-92CE-4959-9272-9CA743F666A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC4702AB-92CE-4959-9272-9CA743F666A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
