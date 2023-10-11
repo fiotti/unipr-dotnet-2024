@@ -50,7 +50,7 @@ void HighLevelFileStreamExample()
     using FileStream file = File.OpenRead("users.csv");
 
     // Gli "stream reader" forniscono metodi ad alto livello per leggere dati dagli stream.
-    using StreamReader reader = new(file);
+    using StreamReader reader = new(file, leaveOpen: true);
 
     // Legge una riga di testo dallo stream.
     string? firstLine = reader.ReadLine();
@@ -84,7 +84,7 @@ async Task HighLevelFileStreamExampleAsync(CancellationToken cancellationToken =
     await using FileStream file = File.OpenRead("users.csv");
 
     // Gli "stream reader" forniscono metodi ad alto livello per leggere dati dagli stream.
-    using StreamReader reader = new(file);
+    using StreamReader reader = new(file, leaveOpen: true);
 
     // Legge una riga di testo dallo stream.
     string? firstLine = await reader.ReadLineAsync(cancellationToken);
