@@ -43,7 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "17_Attributes", "17_Attribu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "18_Streams", "18_Streams\18_Streams.csproj", "{28EC4B7D-8CB2-4BB2-A3DC-431541628C25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "19_Lock", "19_Lock\19_Lock.csproj", "{E654EDB0-D214-489A-B1BD-0291DB335504}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "19_Lock", "19_Lock\19_Lock.csproj", "{E654EDB0-D214-489A-B1BD-0291DB335504}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "20_Json", "20_Json\20_Json.csproj", "{ADF29F14-6BB8-4D8A-9DEF-52336703344C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +137,10 @@ Global
 		{E654EDB0-D214-489A-B1BD-0291DB335504}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E654EDB0-D214-489A-B1BD-0291DB335504}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E654EDB0-D214-489A-B1BD-0291DB335504}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADF29F14-6BB8-4D8A-9DEF-52336703344C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF29F14-6BB8-4D8A-9DEF-52336703344C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF29F14-6BB8-4D8A-9DEF-52336703344C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF29F14-6BB8-4D8A-9DEF-52336703344C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
