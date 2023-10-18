@@ -24,7 +24,7 @@ static class Program
 
             // Output:
             // System.Exception: Qualcosa è andato storto.
-            //    at Program.ThisMethodThrowsAnException() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 112
+            //    at Program.ThisMethodThrowsAnException() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 115
             //    at Program.WillFail() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 107
             //    at Program.Main() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 19
             Console.WriteLine(exceptionData);
@@ -71,7 +71,7 @@ static class Program
         {
             // Output:
             // System.Exception: Qualcosa è andato storto.
-            //    at Program.ThisMethodThrowsAnException() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 112
+            //    at Program.ThisMethodThrowsAnException() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 115
             //    at Program.WillFail() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 107
             //    at Program.RethrowGoodExample() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 147
             //    at Program.Main() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 68
@@ -90,9 +90,9 @@ static class Program
         catch (Exception ex)
         {
             // Output:
-            // System.Exception: Rilevata nomalia.
+            // System.Exception: Rilevata anomalia.
             //  ---> System.Exception: Qualcosa è andato storto.
-            //    at Program.ThisMethodThrowsAnException() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 112
+            //    at Program.ThisMethodThrowsAnException() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 115
             //    at Program.WillFail() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 107
             //    at Program.WrapExample() in C:\src\dotnet\14b_ExceptionsCaveats\Program.cs:line 165
             //    --- End of inner exception stack trace ---
@@ -173,7 +173,7 @@ static class Program
             // trace originale, ed in più verrà aggiunto lo stack trace
             // nel punto di codice dove è stato fatto il nuovo "throw".
 
-            throw new Exception("Rilevata nomalia.", ex);
+            throw new Exception("Rilevata anomalia.", ex);
         }
     }
 }
