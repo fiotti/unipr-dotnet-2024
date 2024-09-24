@@ -50,7 +50,7 @@ Console.WriteLine("Outside: End");
 // Linq internamente usa del codice simile a quello dell'esempio precedente,
 // ma estremamente ottimizzato per avere la migliore performance possibile.
 
-int[] numbers = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+int[] numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 IEnumerable<string> test1 = numbers
     .SkipWhile(n => n != 3)
@@ -120,7 +120,7 @@ static class MyLinq
 
     public static IEnumerable<T> MyOrderDescending<T>(this IEnumerable<T> source)
     {
-        List<T> items = new();
+        List<T> items = [];
 
         foreach (T item in source)
         {

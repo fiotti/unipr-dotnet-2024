@@ -31,7 +31,7 @@ await dataUploader.UploadDataToServerAsync();
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
 
-// I servizi dell'applicazione si configurano così;
+// I servizi dell'applicazione si configurano così:
 builder.Services.TryAddSingleton<IDataAccessor, FileDataAccessor>();
 builder.Services.TryAddSingleton<IServerUploader, HttpServerUploader>();
 builder.Services.TryAddSingleton<IDataUploader, DataUploader>();
@@ -44,21 +44,14 @@ builder.Services.AddHostedService<MainService>();
 using IHost host = builder.Build();
 await host.RunAsync();
 
-class MainService : BackgroundService
+// Nota: le dipendenze dei servizi vengono automaticamente risolte
+// ed iniettate dal "service provider" di Microsoft; è sufficiente
+// indicarle come parametri al costruttore.
+class MainService(IDataUploader dataUploader) : BackgroundService
 {
-    private readonly IDataUploader _dataUploader;
-
-    public MainService(IDataUploader dataUploader)
-    {
-        // Nota: le dipendenze dei servizi vengono automaticamente risolte
-        // ed iniettate dal "service provider" di Microsoft; è sufficiente
-        // indicarle come parametri al costruttore.
-        _dataUploader = dataUploader;
-    }
-
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await _dataUploader.UploadDataToServerAsync(stoppingToken);
+        await dataUploader.UploadDataToServerAsync(stoppingToken);
     }
 }
 

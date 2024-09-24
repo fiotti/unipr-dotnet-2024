@@ -12,40 +12,22 @@ Tuple<string> esempio4 = new("hello", "world");
 
 
 
-public class TupleInt
+public class TupleInt(int item1, int item2)
 {
-    public int Item1 { get; set; }
-    public int Item2 { get; set; }
-
-    public TupleInt(int item1, int item2)
-    {
-        Item1 = item1;
-        Item2 = item2;
-    }
+    public int Item1 { get; set; } = item1;
+    public int Item2 { get; set; } = item2;
 }
 
-public class TupleString
+public class TupleString(string item1, string item2)
 {
-    public string Item1 { get; set; }
-    public string Item2 { get; set; }
-
-    public TupleString(string item1, string item2)
-    {
-        Item1 = item1;
-        Item2 = item2;
-    }
+    public string Item1 { get; set; } = item1;
+    public string Item2 { get; set; } = item2;
 }
 
-public class Tuple<T>
+public class Tuple<T>(T item1, T item2)
 {
-    public T Item1 { get; set; }
-    public T Item2 { get; set; }
-
-    public Tuple(T item1, T item2)
-    {
-        Item1 = item1;
-        Item2 = item2;
-    }
+    public T Item1 { get; set; } = item1;
+    public T Item2 { get; set; } = item2;
 }
 
 

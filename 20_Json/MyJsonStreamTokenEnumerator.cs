@@ -3,12 +3,10 @@ using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 
-public ref struct MyJsonStreamTokenEnumerator
+public ref struct MyJsonStreamTokenEnumerator(Stream stream)
 {
     // Per ulteriori informazioni:
     // https://learn.microsoft.com/dotnet/standard/serialization/system-text-json/use-utf8jsonreader
-
-    private readonly Stream? _stream;
 
     // Buffer, numero di byte nel buffer, e reader.
     private byte[]? _buffer;
@@ -16,18 +14,13 @@ public ref struct MyJsonStreamTokenEnumerator
     private bool _streamReadToCompletion;
     private Utf8JsonReader _reader;
 
-    public MyJsonStreamTokenEnumerator(Stream stream)
-    {
-        _stream = stream;
-    }
-
     public bool DebugPrintToConsole { get; init; }
 
     public Utf8JsonReader Current => _reader;
 
     public bool MoveNext()
     {
-        if (_stream == null)
+        if (stream == null)
             throw new InvalidOperationException("Enumerator not initialized.");
 
         // Alla prima iterazione richiede un buffer.
@@ -38,7 +31,7 @@ public ref struct MyJsonStreamTokenEnumerator
             _buffer = ArrayPool<byte>.Shared.Rent(8);
 
             // Fa una prima lettura dallo stream.
-            _bufferedBytesCount = _stream.Read(_buffer);
+            _bufferedBytesCount = stream.Read(_buffer);
 
             if (DebugPrintToConsole)
             {
@@ -70,7 +63,7 @@ public ref struct MyJsonStreamTokenEnumerator
     private bool TryReadNextJsonToken()
     {
         Debug.Assert(_buffer != null);
-        Debug.Assert(_stream != null);
+        Debug.Assert(stream != null);
 
         int bufferOffset;
         int bytesRead = 0;
@@ -97,7 +90,7 @@ public ref struct MyJsonStreamTokenEnumerator
             int fillFrom = bufferOffset;
             while (fillFrom < _buffer.Length)
             {
-                int lastBytesRead = _stream.Read(_buffer.AsSpan(fillFrom));
+                int lastBytesRead = stream.Read(_buffer.AsSpan(fillFrom));
                 bytesRead += lastBytesRead;
                 fillFrom += lastBytesRead;
 
@@ -108,7 +101,7 @@ public ref struct MyJsonStreamTokenEnumerator
         else
         {
             bufferOffset = 0;
-            bytesRead = _stream.Read(_buffer);
+            bytesRead = stream.Read(_buffer);
         }
 
         // Reader e stream esauriti? Return false per segnalarlo al chiamante.

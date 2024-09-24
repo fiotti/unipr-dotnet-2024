@@ -11,7 +11,7 @@
 // queste operazioni sono applicabili a tutte le "collection".
 
 // Numeri da 0 a 9 in ordine casuale.
-IEnumerable<int> numeri = new[] { 6, 8, 5, 1, 2, 7, 9, 4, 0, 3 };
+IEnumerable<int> numeri = [6, 8, 5, 1, 2, 7, 9, 4, 0, 3];
 
 // Trova il valore massimo.
 // Risultato: 9
@@ -71,7 +71,7 @@ IEnumerable<int> aboveFiveAfterSevenDescending = numeri
 // Esempio:
 Console.WriteLine("-- 0 --");
 
-int[] test = new[] { 1, 2, 3, 4, 5 };
+int[] test = [1, 2, 3, 4, 5];
 
 Console.WriteLine("-- 1 --");
 
@@ -106,28 +106,25 @@ Console.WriteLine("-- 4 --");
 // Linq permette di scrivere query anche complesse con poche righe di codice.
 
 // Ad esempio, dato un database con tre tabelle contenenti i seguenti dati:
-User[] users = new User[]
-{
+User[] users = [
     new(Id: 1, Username: "Pippo"),
     new(Id: 2, Username: "Pluto"),
     new(Id: 3, Username: "Paperino"),
-};
+];
 
-Product[] products = new Product[]
-{
+Product[] products = [
     new(Id: 1, Sku: "Mouse"),
     new(Id: 2, Sku: "Keyboard"),
     new(Id: 3, Sku: "Monitor"),
-};
+];
 
-Purchase[] purchases = new Purchase[]
-{
+Purchase[] purchases = [
     new(Id: 1, UserId: 1, ProductId: 1, PurchaseDate: "2023-09-28"),
     new(Id: 2, UserId: 1, ProductId: 2, PurchaseDate: "2023-09-28"),
     new(Id: 3, UserId: 2, ProductId: 2, PurchaseDate: "2023-09-29"),
     new(Id: 4, UserId: 2, ProductId: 3, PurchaseDate: "2023-09-29"),
     new(Id: 5, UserId: 3, ProductId: 1, PurchaseDate: "2023-09-30"),
-};
+];
 
 // Cerca tutti gli acquisti fatti da Pippo:
 IEnumerable<Purchase> pippoPurchases2 = purchases

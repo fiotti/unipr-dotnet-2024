@@ -74,22 +74,12 @@ public interface IMyInterface
     int Num { get; set; }
 }
 
-public class MyClass
+public class MyClass(int initialNum)
 {
-    public int Num { get; set; }
-
-    public MyClass(int initialNum)
-    {
-        Num = initialNum;
-    }
+    public int Num { get; set; } = initialNum;
 }
 
-public struct MyStruct : IMyInterface
+public struct MyStruct(int initialNum) : IMyInterface
 {
-    public int Num { get; set; }
-
-    public MyStruct(int initialNum)
-    {
-        Num = initialNum;
-    }
+    public int Num { get; set; } = initialNum;
 }

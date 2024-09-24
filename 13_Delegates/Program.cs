@@ -2,6 +2,8 @@
 // In C# esistono vari modi per definire funzioni o metodi, la sintassi più
 // classica quella estesa:
 
+using System.Drawing;
+
 void StampaHelloWorld()
 {
     Console.WriteLine("Hello, World!");
@@ -141,6 +143,27 @@ Console.WriteLine($"V: {v}");
 // Output:
 // P: REF_1
 // V: REF_2
+
+
+
+// I parametri "in" sono solo leggibili dall'interno di un metodo,
+// non possono essere modificati dall'interno del metodo.
+// La differenza tra un parametro normale e un parametro "in" è che un
+// parametro normale viene copiato e trasferito al metodo, mentre un parametro
+// "in" viene passato per riferimento. Questo è utile quando il parametro
+// passato è particolarmente pesante, e farne una copia consumerebbe troppo.
+// Tenere presente che i "reference type" sono sempre passati per riferimento,
+// quindi i parametri "in" solo utili solo per i "value type" pesanti.
+void Metodo4(in Rectangle inParam)
+{
+    Console.WriteLine($"X: {inParam}");
+}
+
+Rectangle x = new(100, 150, 10, 20);
+Metodo4(x);
+
+// Output:
+// X: {X=100,Y=150,Width=10,Height=20}
 
 
 

@@ -172,7 +172,7 @@ string GetConfigBad()
     {
         return File.ReadAllText("config.txt");
     }
-    catch (Exception ex) // bad
+    catch (Exception ex) // BAD: catch troppo generico.
     {
         throw new Exception("Configuration file not found.", ex);
     }
@@ -184,7 +184,7 @@ string GetConfigGood()
     {
         return File.ReadAllText("config.txt");
     }
-    catch (Exception ex) when (ex is FileNotFoundException or DirectoryNotFoundException) // good
+    catch (Exception ex) when (ex is FileNotFoundException or DirectoryNotFoundException) // GOOD
     {
         throw new Exception("Configuration file not found.", ex);
     }

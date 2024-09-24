@@ -16,39 +16,24 @@ Console.WriteLine($"Serialized: {serialized}");
 
 
 [SerializableWithMySerializer]
-public class MyClass
+public class MyClass(string hello, int worldValue)
 {
     [MySerializerName("Hello")]
-    private string _hello;
-
-    public MyClass(string hello, int worldValue)
-    {
-        _hello = hello;
-        WorldValue = worldValue;
-    }
+    private string _hello = hello;
 
     [MySerializerName("World")]
-    public int WorldValue { get; }
+    public int WorldValue => worldValue;
 }
 
 
 
 [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-class SerializableWithMySerializerAttribute : Attribute
-{
-}
+class SerializableWithMySerializerAttribute : Attribute;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-class MySerializerNameAttribute : Attribute
+class MySerializerNameAttribute(string name) : Attribute
 {
-    readonly string _name;
-
-    public MySerializerNameAttribute(string name)
-    {
-        _name = name;
-    }
-
-    public string Name => _name;
+    public string Name => name;
 }
 
 

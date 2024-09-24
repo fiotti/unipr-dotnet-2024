@@ -184,7 +184,7 @@ do
 while (hasMore);
 
 // Il ciclo foreach permette di iterare gli elementi di un valore "enumerable":
-int[] fibo = new[] { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34 };
+int[] fibo = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34];
 foreach (int val in fibo)
 {
     Console.WriteLine($"Fibo val: {val}");

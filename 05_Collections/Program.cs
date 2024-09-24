@@ -7,7 +7,7 @@
 // - ricerca O(n)
 // - non è possibile aggiungere elementi
 // - non è possibile cancellare elementi
-int[] arrayNumeri = new[] { 1, 2, 3 };
+int[] arrayNumeri = [1, 2, 3];
 
 // legge il primo valore
 int primoNumeroArray = arrayNumeri[0];
@@ -22,7 +22,7 @@ arrayNumeri[0] = 10;
 // - ricerca O(n)
 // - aggiunta O(n)
 // - cancellazione O(n)
-List<int> listNumeri = new() { 1, 2, 3 };
+List<int> listNumeri = [1, 2, 3];
 
 // legge il primo valore
 int primoNumeroList = listNumeri[0];
@@ -43,7 +43,7 @@ listNumeri.RemoveAt(1);
 // - ricerca O(n)
 // - aggiunta O(1)
 // - cancellazione O(1)
-LinkedList<int> linkedListNumeri = new();
+LinkedList<int> linkedListNumeri = [];
 linkedListNumeri.AddLast(1);
 linkedListNumeri.AddLast(2);
 linkedListNumeri.AddLast(3);
@@ -64,7 +64,7 @@ linkedListNumeri.Remove(linkedListNumeri.Last.Previous);
 // - ricerca O(1)
 // - aggiunta elemento O(1)
 // - cancellazione elemento O(1)
-HashSet<int> setNumeri = new() { 1, 2, 3 };
+HashSet<int> setNumeri = [1, 2, 3];
 
 // aggiunge un valore
 setNumeri.Add(4);
@@ -103,7 +103,7 @@ dicNumeri.Remove("Due");
 // Inoltre è prevista un'astrazione IEnumerable che rappresenta una serie di valori
 // non modificabile. Tutte le "collection" sono anche IEnumerable, ma l'efficienza
 // di ciascuna operazione su un IEnumerable dipende dalla "collection" sottostante.
-IEnumerable<int> seqNumeri = new[] { 1, 2, 3 };
+IEnumerable<int> seqNumeri = [1, 2, 3];
 
 // legge il primo valore
 int primoNumeroSeq = seqNumeri.ElementAt(0);

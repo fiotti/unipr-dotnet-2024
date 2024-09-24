@@ -243,7 +243,7 @@ async Task ProcessNumbersAsync(int[] numbers, CancellationToken cancellationToke
     }
 }
 
-int[] numbers = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+int[] numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 // Sorgente di cancellation token, che viene cancellato dopo 3 secondi.
 using CancellationTokenSource cts = new();

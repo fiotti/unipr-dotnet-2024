@@ -2,7 +2,7 @@
 // C# è un linguaggio multi-thread, è possibile lanciare nuovi thread con
 // la sintassi seguente.
 
-List<Thread> threads = new();
+List<Thread> threads = [];
 
 for (int i = 0; i < 5; i++)
 {
@@ -42,7 +42,7 @@ for (int i = 0; i < 100000; i++)
     counter++;
 }
 
-List<Thread> threads2 = new();
+List<Thread> threads2 = [];
 
 for (int i = 0; i < 100; i++)
 {
@@ -85,7 +85,7 @@ Console.WriteLine($"Multi-thread: {sharedCounter}");
 object guard = new();
 int sharedCounter2 = 0;
 
-List<Thread> threads3 = new();
+List<Thread> threads3 = [];
 
 for (int i = 0; i < 100; i++)
 {
@@ -123,7 +123,7 @@ Console.WriteLine($"Multi-thread con lock: {sharedCounter2}");
 
 int sharedCounter3 = 0;
 
-List<Task> tasks = new();
+List<Task> tasks = [];
 
 for (int i = 0; i < 100; i++)
 {
@@ -155,7 +155,7 @@ Console.WriteLine($"Multi-task: {sharedCounter3}");
 SemaphoreSlim semaphore = new(1);
 int sharedCounter4 = 0;
 
-List<Task> tasks2 = new();
+List<Task> tasks2 = [];
 
 for (int i = 0; i < 100; i++)
 {

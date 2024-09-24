@@ -59,6 +59,15 @@ class MyClass
     }
 }
 
+// Il costruttore pubblico vuoto può essere definito sulla prima riga:
+class MyClass2(int value)
+{
+    public void PrintValue()
+    {
+        Console.WriteLine($"Il valore della property è: {value}");
+    }
+}
+
 
 
 // Ereditarietà e polimorfismo sono supportati.

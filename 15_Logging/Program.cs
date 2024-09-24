@@ -18,24 +18,16 @@ builder.Services.AddHostedService<ProcessDataFile>();
 using IHost host = builder.Build();
 await host.RunAsync();
 
-class ProcessDataFile : BackgroundService
+// Nota: grazie alla dependency-injection di Microsoft, il logger è
+// accessibile ovunque tramite l'interfaccia ILogger<T>.
+class ProcessDataFile(ILogger<ProcessDataFile> logger) : BackgroundService
 {
-    private readonly ILogger _logger;
-
-    public ProcessDataFile(ILogger<ProcessDataFile> logger)
-    {
-        // Grazie alla dependency-injection di Microsoft, il logger è
-        // accessibile ovunque tramite l'interfaccia ILogger<T>.
-
-        _logger = logger;
-    }
-
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         try
         {
             // I messaggi informativi indicano cosa succede nel software.
-            _logger.LogInformation("Inizio elaborazione file...");
+            logger.LogInformation("Inizio elaborazione file...");
 
             if (!Environment.Is64BitProcess)
             {
@@ -44,7 +36,7 @@ class ProcessDataFile : BackgroundService
                 // Solitamente indicano che l'operazione richiesta può comunque
                 // essere portata a compimento senza errori, ma che ciò
                 // potrebbe non essere fatto in modo ottimale.
-                _logger.LogWarning("Questa applicazione dovrebbe essere eseguita in modalità a 64 bit.");
+                logger.LogWarning("Questa applicazione dovrebbe essere eseguita in modalità a 64 bit.");
             }
 
             // I messaggi di debug indicano nel dettaglio lo stato delle
@@ -52,7 +44,7 @@ class ProcessDataFile : BackgroundService
             //
             // Solitamente vengono disabilitati tramite file di configurazione
             // quando il software viene rilasciato in produzione.
-            _logger.LogDebug("Inizio ciclo sul file dei dati...");
+            logger.LogDebug("Inizio ciclo sul file dei dati...");
 
             int rowNumber = 0;
             foreach (string row in File.ReadLines("data.txt"))
@@ -60,13 +52,13 @@ class ProcessDataFile : BackgroundService
                 await ProcessRow(++rowNumber, row, stoppingToken);
             }
 
-            _logger.LogDebug("Fine ciclo sul file dei dati.");
+            logger.LogDebug("Fine ciclo sul file dei dati.");
 
-            _logger.LogInformation("Elaborazione file terminata senza errori.");
+            logger.LogInformation("Elaborazione file terminata senza errori.");
         }
         catch (OperationCanceledException)
         {
-            _logger.LogInformation("Elaborazione file interrotta.");
+            logger.LogInformation("Elaborazione file interrotta.");
         }
         catch (Exception ex)
         {
@@ -76,7 +68,7 @@ class ProcessDataFile : BackgroundService
             //
             // Generalmente dopo un errore critico il software va in crash,
             // ovvero termina forzatamente e non procede con l'elaborazione.
-            _logger.LogCritical(ex, "Elaborazione file interrotta a causa di un errore non gestito.");
+            logger.LogCritical(ex, "Elaborazione file interrotta a causa di un errore non gestito.");
         }
     }
 
@@ -84,7 +76,7 @@ class ProcessDataFile : BackgroundService
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        _logger.LogDebug("Elaborazione riga {RowNumber}: {Value}", rowNumber, row);
+        logger.LogDebug("Elaborazione riga {RowNumber}: {Value}", rowNumber, row);
 
         if (string.IsNullOrWhiteSpace(row))
         {
@@ -93,7 +85,7 @@ class ProcessDataFile : BackgroundService
             //
             // Sarà necessario correggere manualmente il problema,
             // per esempio ripetendo la richiesta.
-            _logger.LogError("La riga {RowNumber} non contiene alcun valore, impossibile elaborare.", rowNumber);
+            logger.LogError("La riga {RowNumber} non contiene alcun valore, impossibile elaborare.", rowNumber);
             return;
         }
 
@@ -114,7 +106,7 @@ class ProcessDataFile : BackgroundService
 // info: Microsoft.Hosting.Lifetime[0]
 //       Hosting environment: Production
 // info: Microsoft.Hosting.Lifetime[0]
-//       Content root path: C:\src\dotnet\15_Logging\bin\Debug\net7.0
+//       Content root path: C:\src\dotnet\15_Logging\bin\Debug\net8.0
 // dbug: ProcessDataFile[0]
 //       Elaborazione riga 2: riga 2
 // dbug: ProcessDataFile[0]

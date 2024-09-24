@@ -91,10 +91,10 @@ bool TryFindBad(IEnumerable<string> items, string startsWith, out string? found)
     return false;
 }
 
-string[] items = new[] { "banana", "tomato", "apple" };
+string[] items = ["banana", "tomato", "apple"];
 if (TryFindBad(items, "toma", out string? toma))
 {
-    // Dato che TryFind1(…) ha restituito true,
+    // Dato che TryFindBad(…) ha restituito true,
     // toma è sicuramente diverso da null,
     // ma il compilatore non lo sa...
 

@@ -29,13 +29,13 @@ public class MyClass
     }
 
     // Tutti i nomi devono essere chiari piuttosto che brevi.
-    public string? Inst { get; set; } // BAD
+    public string? Inst { get; set; } // BAD: nome poco chiaro.
 
     public string? InstanceName { get; set; } // GOOD
 
     public void Up(string path, string url)
     {
-        // BAD
+        // BAD: nomi poco chiari.
     }
 
     public void UploadFileToServer(string filePath, string serverUrl)
