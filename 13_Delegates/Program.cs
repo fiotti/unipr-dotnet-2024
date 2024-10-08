@@ -1,8 +1,7 @@
-﻿
+﻿using System.Numerics;
+
 // In C# esistono vari modi per definire funzioni o metodi, la sintassi più
 // classica quella estesa:
-
-using System.Drawing;
 
 void StampaHelloWorld()
 {
@@ -88,7 +87,7 @@ StampaEspressione(20, "/", 4);
 
 
 // I parametri passati alle funzioni sono accessibili dall'interno,
-// ma eventuali modifiche non vengono propagate all'esterno:
+// ma eventuali assegnazioni non vengono propagate all'esterno:
 void Metodo1(string param)
 {
     Console.WriteLine($"A: {param}");
@@ -110,8 +109,8 @@ Console.WriteLine($"C: {c}");
 
 
 
-// I parametri in "out" sono modificabili dall'interno di un metodo,
-// non possono essere letti dall'interno del metodo:
+// I parametri in "out" sono assegnabili dall'interno di un metodo,
+// non possono essere letti dall'interno del metodo prima di essere assegnati:
 string Metodo2(out string outParam)
 {
     outParam = "OUT";
@@ -129,7 +128,7 @@ Console.WriteLine($"O: {o}");
 
 
 
-// I parametri per "ref" sono sia leggibili che modificabili dall'interno:
+// I parametri per "ref" sono sia leggibili che assegnabili dall'interno:
 void Metodo3(ref string refParam)
 {
     Console.WriteLine($"P: {refParam}");
@@ -147,23 +146,23 @@ Console.WriteLine($"V: {v}");
 
 
 // I parametri "in" sono solo leggibili dall'interno di un metodo,
-// non possono essere modificati dall'interno del metodo.
+// non possono essere assegnati dall'interno del metodo.
 // La differenza tra un parametro normale e un parametro "in" è che un
 // parametro normale viene copiato e trasferito al metodo, mentre un parametro
 // "in" viene passato per riferimento. Questo è utile quando il parametro
-// passato è particolarmente pesante, e farne una copia consumerebbe troppo.
+// passato è particolarmente pesante e farne una copia consumerebbe troppo.
 // Tenere presente che i "reference type" sono sempre passati per riferimento,
 // quindi i parametri "in" solo utili solo per i "value type" pesanti.
-void Metodo4(in Rectangle inParam)
+void Metodo4(in Matrix4x4 inParam)
 {
     Console.WriteLine($"X: {inParam}");
 }
 
-Rectangle x = new(100, 150, 10, 20);
+Matrix4x4 x = new(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
 Metodo4(x);
 
 // Output:
-// X: {X=100,Y=150,Width=10,Height=20}
+// X: { {M11:0 M12:1 M13:2 M14:3} {M21:4 M22:5 M23:6 M24:7} {M31:8 M32:9 M33:10 M34:11} {M41:12 M42:13 M43:14 M44:15} }
 
 
 
