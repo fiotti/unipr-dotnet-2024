@@ -1,17 +1,19 @@
 ﻿
-// Le variabili devono essere dichiarate prima di essere utilizzate.
+// Le variabili devono essere dichiarate prima di essere lette o assegnate.
 int num0;
 double dec0;
 string str0;
 bool bool0;
 
-// Le variabili possono essere assegnate (o riassegnate) solo con valori del tipo usato in dichiarazione.
+// Le variabili possono essere assegnate (o riassegnate) solo con valori del
+// tipo indicato alla dichiarazione.
 num0 = 4567;
 dec0 = 45.67;
 str0 = "Ciao, mondo!";
 bool0 = false;
 
-// È possibile anche unire dichiarazione ed assegnazione iniziale in una singola riga di codice.
+// È possibile anche unire dichiarazione ed assegnazione iniziale in una singola
+// riga di codice.
 int num1 = 1234;
 double dec1 = 12.34;
 string str1 = "Hello, World!";
@@ -24,6 +26,8 @@ string? str2 = null;
 bool? bool2 = null;
 
 // È possibile anche dichiarare costanti con il prefisso "const".
+// Le costanti accettano solo valori noti in fase di compilazione, e non possono
+// essere riassegnate.
 const int SomeConstant = 1234;
 const double AnotherConstant = 12.34;
 const string MyString = "test";
@@ -82,7 +86,8 @@ int val2 = 100 + val1;
 
 
 
-// Il costrutto "if/else" permette di eseguire in modo condizionale una porzione di codice:
+// Il costrutto "if/else" permette di eseguire in modo condizionale una porzione
+// di codice:
 if (bool1)
 {
     // eseguito se "bool1 è true"
@@ -146,7 +151,7 @@ switch (MyString)
         break;
 }
 
-// È disponibile anche una sintassi più condensata, utilizzabile quando si fa un'assegnazione:
+// È disponibile anche una sintassi più concisa, utilizzabile quando si fa un'assegnazione:
 string message = MyString switch
 {
     "test" => "The string is 'test'.",

@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 
-// In C# è possibile fare uso di "reflection" per verificare a runtime qual'è
+// In C# è possibile fare uso di "reflection" per verificare a runtime quale sia
 // la struttura di un tipo (classe, struct, ecc...) o di un assembly.
 
 void PrintDefinitionOf(Type type)

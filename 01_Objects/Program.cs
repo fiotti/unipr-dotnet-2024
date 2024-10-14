@@ -8,10 +8,12 @@ class MyClass
     // I campi "readonly" possono essere assegnati solo dal costruttore.
     private readonly int _readonlyField;
 
-    // Questa è una property con getter e setter generati automaticamente.
+    // Questa è una auto-property, ovvero una property con getter e setter
+    // generati automaticamente, che rispettivamente leggono e assegnano un
+    // campo privato nascosto generato automaticamente.
     public int AutoProperty { get; set; }
 
-    // Questa è una property con getter e setter indicati manualmente.
+    // Questa è una property con getter e setter definiti esplicitamente.
     public int Property
     {
         get
@@ -24,23 +26,27 @@ class MyClass
         }
     }
 
-    // È supportata anche una sintassi più semplice.
+    // È supportata anche una sintassi più semplice se getter o setter possono
+    // essere espressi con una singola espressione di codice.
     public int Property2
     {
         get => _field;
         set => _field = value;
     }
 
-    // Le property possono anche avere solo un getter, o volendo solo un setter (raramente).
+    // Le property possono anche avere solo un getter, 
+    // ppure volendo solo un setter (raramente).
     public int GetterOnly
     {
         get => _readonlyField;
     }
 
-    // Per le property con solo un getter è supportata anche una sintassi più semplice.
+    // Per le property con solo un getter che può essere espresso in una singola
+    // espressione di codice è supportata anche una sintassi più semplice.
     public int GetterOnly2 => _readonlyField;
 
-    // Questo è il costruttore della classe.
+    // Questo è il costruttore della classe, viene utilizzato per inizializzare
+    // la classe ed è invocabile con la parola chiave "new" di C#.
     public MyClass(int value)
     {
         _readonlyField = value;
@@ -52,14 +58,19 @@ class MyClass
         Console.WriteLine($"Il valore della property è: {Property}");
     }
 
-    // È possibile definire un metodo "static" accessibile ovunque senza bisogno di creare istanze della classe.
+    // È possibile definire un metodo "static" accessibile ovunque senza bisogno
+    // di creare istanze della classe. È possibile anche definire property e
+    // campi "static", che saranno accessibili indicando il nome della classe
+    // piuttosto che una variabile del tipo della classe.
     public static void Hello()
     {
         Console.WriteLine("Hello!");
     }
 }
 
-// Il costruttore pubblico vuoto può essere definito sulla prima riga:
+// Il "costruttore primario" è un costruttore pubblico che non contiene codice.
+// C# permette di definirlo con una sintassi più semplice rispetto a quella di
+// un costruttore tradizionale:
 class MyClass2(int value)
 {
     public void PrintValue()
@@ -124,8 +135,10 @@ public class Cat : Animal
 
 
 
-// Non è supportata l'ereditarietà multipla, ma per ovviare questo problema è possibile fare uso di interfacce.
-// Una classe può ereditare da una sola classe padre, ma può implementare più di un'interfaccia.
+// Non è supportata l'ereditarietà multipla, ma per ovviare questo problema è
+// possibile fare uso di interfacce.
+// Una classe può ereditare da una sola classe padre, ma può implementare più
+// di un'interfaccia.
 public interface IAnimal
 {
     string Family { get; }
@@ -165,8 +178,10 @@ public class Human : Animal, IAnimal, IJumping
 
 
 
-// Le "struct" sono equivalenti alle "class", ma non supportano ereditarietà; possono implementare interfacce.
-// A differenza delle classi, le strutture risiedono sullo stack piuttosto che sulla heap.
+// Le "struct" sono equivalenti alle "class", ma non supportano ereditarietà.
+// A differenza delle classi, le strutture risiedono sullo stack piuttosto che
+// sulla heap.
+// Possono implementare interfacce.
 
 public struct MyStruct : IJumping
 {

@@ -92,7 +92,7 @@ Dictionary<string, int> dicNumeri = new()
 // legge il valore associato alla chiave "Tre"
 int tre = dicNumeri["Tre"];
 
-// legge il valore associato alla chiave "Dieci"
+// associa il valore 10 alla chiave "Dieci"
 dicNumeri["Dieci"] = 10;
 
 // rimuove la chiave "Due" ed il valore associato

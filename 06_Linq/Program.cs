@@ -45,6 +45,10 @@ IEnumerable<int> aboveFive = numeri.Where(n => n > 5);
 // Risultato: 6
 int first = numeri.First();
 
+// Prende il primo valore nella sequenza, se la sequenza è vuota prende il
+// valore di default per il tipo di dato della sequenza.
+int firstOrDefault = numeri.FirstOrDefault();
+
 // Prende i primi 5 valori nella sequenza.
 // Risultato: 6, 8, 5, 1, 2
 IEnumerable<int> firstFive = numeri.Take(5);

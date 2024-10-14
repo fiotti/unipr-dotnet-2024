@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 // di componenti esterni, o per nuove pattern di utilizzo diverse da quelle
 // ipotizzate in fase di analisi del software.
 //
-// Per agevolare l'identificazione di nuovo problematiche, che talvolta
+// Per agevolare l'identificazione di nuove problematiche, che talvolta
 // emergono anche anni dopo un rilascio in produzione, è importante che
 // il software emetta log che descrivano gli eventi interni.
 
@@ -80,7 +80,7 @@ class ProcessDataFile(ILogger<ProcessDataFile> logger) : BackgroundService
 
         if (string.IsNullOrWhiteSpace(row))
         {
-            // I messaggi di errore indicano non è stato possibile
+            // I messaggi di errore indicano che non è stato possibile
             // completare correttamente l'operazione richiesta.
             //
             // Sarà necessario correggere manualmente il problema,

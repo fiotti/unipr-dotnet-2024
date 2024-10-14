@@ -29,6 +29,8 @@ await dataUploader.UploadDataToServerAsync();
 // trasparente possibile la gestione di queste dipendenze, tramite la pattern
 // di design del software chiamata "dependency injection".
 
+// Il codice seguente è funzionalmente equivalente al precedente.
+
 HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
 
 // I servizi dell'applicazione si configurano così:
@@ -36,13 +38,19 @@ builder.Services.TryAddSingleton<IDataAccessor, FileDataAccessor>();
 builder.Services.TryAddSingleton<IServerUploader, HttpServerUploader>();
 builder.Services.TryAddSingleton<IDataUploader, DataUploader>();
 
-// Il codice dell'applicazione risiede negli "hosted service",
-// è anche consentito registrare più di un "hosted service":
+// Nelle applicazioni tradizionali il codice si trova nel main, mentre nelle
+// "host application" il codice risiede negli "hosted service".
+// È anche consentito registrare più di un "hosted service".
 builder.Services.AddHostedService<MainService>();
 
-// Una volta configurato il tutto, l'applicazione può essere eseguita:
+// Una volta configurati tutti i servizi, la "hosted application" può essere
+// compilata. Una volta compilata non è più possibile modificare i servizi.
 using IHost host = builder.Build();
+
+// A questo punto è possibile eseguire tutti gli "hosted service" aggiunti
+// all'applicazione.
 await host.RunAsync();
+
 
 // Nota: le dipendenze dei servizi vengono automaticamente risolte
 // ed iniettate dal "service provider" di Microsoft; è sufficiente
@@ -52,6 +60,13 @@ class MainService(IDataUploader dataUploader) : BackgroundService
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         await dataUploader.UploadDataToServerAsync(stoppingToken);
+
+        // Nelle applicazioni tradizionali, all'uscita dal main l'esecuzione
+        // dell'applicazione termina automaticamente.
+        // Nelle "hosted application" l'esecuzione termina solo su richiesta.
+
+        // Per le applicazioni da linea di comando è possibile inviare una
+        // richiesta di terminazione con la combinazione di tasti CTRL + C.
     }
 }
 

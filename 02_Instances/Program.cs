@@ -1,7 +1,10 @@
 ﻿
 public static class Program
 {
-    // Se è presente un metodo di nome "Main" viene usato come punto di ingresso.
+    // Se è presente un metodo "Main", viene usato come punto di ingresso.
+    // In alternativa il codice di ingresso può essere scritto fuori da classi.
+    // Quando il programma viene compilato, viene implicitamente creata una
+    // classe con un metodo "Main" contenente il codice di ingresso.
     public static void Main()
     {
         SomeMethod();
@@ -19,7 +22,7 @@ public static class Program
         // È possibile passare gli oggetti ai metodi, vengono passati per riferimento.
         HelloClass(myObject);
 
-        Console.WriteLine($"Second: {myObject.Num}"); // 456
+        Console.WriteLine($"Second: {myObject.Num}"); // 456 (e non 123)
 
         // "myObject" verrà deallocato automaticamente a breve, in quanto non più utilizzato.
         // Non è necessario fare esplicitamente "delete" in C# per deallocare la memoria.
@@ -44,13 +47,14 @@ public static class Program
     private static void SomeMethod3()
     {
         // Alloca "myValue" sulla heap dato che il tipo della variabile è un'interfaccia.
+        // In .NET, trasferire un "value type" sulla heap è chiamato "boxing".
         IMyInterface myValue = new MyStruct(123);
 
         Console.WriteLine($"Firth: {myValue.Num}"); // 123
 
         HelloInterface(myValue);
 
-        Console.WriteLine($"Sixth: {myValue.Num}"); // 456
+        Console.WriteLine($"Sixth: {myValue.Num}"); // 456 (e non 123)
     }
 
     private static void HelloClass(MyClass obj)

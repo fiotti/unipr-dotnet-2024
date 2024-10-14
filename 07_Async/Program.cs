@@ -171,6 +171,9 @@ async Task<string> GetPagesParallelAsync(CancellationToken cancellationToken = d
     string home = await homeTask;
     string test = await testTask;
 
+    // Dato che questi Task sono già stati "awaited", le due "await" precedenti
+    // leggono in modo sincrono il valore senza realmente attendere.
+
     return $"{home}\n\n{test}";
 }
 
@@ -180,7 +183,7 @@ async Task<string> GetPagesParallelAsync(CancellationToken cancellationToken = d
 // essere convertito in codice asincrono...
 string SomeLegacyMethod()
 {
-    // codice...
+    // codice sincrono che non può essere modificato...
     return "test";
 }
 
@@ -227,8 +230,8 @@ string GetPagesSequential()
 
 
 
-// È possibile usare il cancellation token per cancellare un'operazione
-// asincrona se il chiamante non è più interessato:
+// È possibile usare il cancellation token per chiedere di cancellare
+// un'operazione asincrona se il chiamante non è più interessato:
 async Task ProcessNumbersAsync(int[] numbers, CancellationToken cancellationToken = default)
 {
     foreach (int number in numbers)
@@ -265,4 +268,5 @@ catch (OperationCanceledException)
 //
 // È buona pratica accettare un cancellation token in tutti i metodi async, e
 // tenerne conto internamente per interrompere l'operazione in corso, ma il
-// chiamante non può dare per scontato che il chiamato adotti questa pratica.
+// chiamante non può dare per scontato che il chiamato adotti questa pratica,
+// e non sempre è possibile interrompere immediatamente un'operazione in corso.

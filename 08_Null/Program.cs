@@ -1,11 +1,12 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 // C# è un linguaggio strongly-typed, quindi non è consentito assegnare ad una
 // variabile valori di un tipo diverso rispetto al tipo dichiarato.
 
 // Il controllo che il tipo assegnato coincida con il tipo dichiarato viene
 // eseguito in fase di compilazione ed è garantito che se un programma compila,
-// il valore in una variabile è del tipo previsto dalla variabile.
+// il valore in una variabile è di un tipo accettato dalla variabile.
 
 string str0 = "hello"; // OK
 string str1 = 123; // Error: cannot implicitly convert 'int' to 'string'.
@@ -19,8 +20,8 @@ int num0 = null; // Error: cannot convert null to 'int' because it's a non-nulla
 int? num1 = null; // OK
 
 // I controlli di nullabilità sui "reference type" invece sono stati aggiunti
-// più recentemente, e sono limitati ad un warning per non rompere la
-// compatibilità con le versioni precedenti del linguaggio e del runtime.
+// in una versione più recente di .NET, e sono limitati ad un warning per non
+// rompere la compatibilità con le versioni precedenti di linguaggio e runtime.
 
 string str3 = null; // Warning: converting null literal or possible null value to non-nullable type.
 string? str4 = null; // OK
@@ -42,7 +43,7 @@ string example1 = Duplicate(nullStr); // Warning: possible null reference argume
 string example2 = "";
 if (nullStr != null)
 {
-    example2 = Duplicate(nullStr); // OK perché questo codice non viene mai eseguito se str4 è null.
+    example2 = Duplicate(nullStr); // OK perché questo codice non viene mai eseguito se nullStr è null.
 }
 
 // ...ma non sempre con i "reference type" è in grado di farlo correttamente.
@@ -54,6 +55,7 @@ if (isNull)
     test = "not null";
 }
 
+// In questa riga test non può essere null, ma il compilatore segnala comunque:
 string example3 = Duplicate(test); // Warning: possible null reference argument for parameter 'str' in `string Duplicate(string str)`.
 
 // In questo caso è possibile zittire il warning:
@@ -70,10 +72,16 @@ string bad = test2!.Substring(1); // Nessun warning, eccezione a runtime.
 // Una soluzione più affidabile per gestire questa casistica è per esempio:
 string good = (test2 ?? throw new Exception("test2 is null")).Substring(1);
 
+// Nota dell'autore: una versione leggermente meno sicura è la seguente, che
+// interrompe l'esecuzione solo nella versione di debug se test2 è null, ma non
+// effettua alcun controllo nella versione di release.
+Debug.Assert(test2 != null);
+string good2 = test2.Substring(1);
+
 
 
 // In alcune situazioni più complesse il compilatore potrebbe non essere in
-// grado di rilevare in autonomia quando un valore è null o non null:
+// grado di rilevare in autonomia se un valore può o meno essere null:
 bool TryFindBad(IEnumerable<string> items, string startsWith, out string? found)
 {
     foreach (string item in items)
@@ -127,7 +135,7 @@ if (TryFindGood(items, "toma", out string? toma2))
 
 
 // Purtroppo esistono anche situazioni in cui una variabile può assumere
-// valore null senza che il compilatore non se ne renda conto.
+// valore null senza che il compilatore se ne renda conto.
 
 MyStruct hello = new();
 string oops = hello.ThisIsNull.Substring(1); // Nessun warning, eccezione a runtime.

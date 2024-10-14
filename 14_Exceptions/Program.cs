@@ -63,7 +63,7 @@ catch (Exception ex)
 
 
 // È possibile filtrare solo alcuni tipi di eccezione indicando nel blocco
-// "catch" il tipo di eccezione che si intente intercettare, oppure
+// "catch" il tipo di eccezione che si intende intercettare, oppure
 // utilizzando la parola chiave "when" per definire una condizione.
 try
 {

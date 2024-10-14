@@ -5,7 +5,8 @@
 TupleInt esempio1 = new(1, 2);
 TupleString esempio2 = new("hello", "world");
 
-// ...è possibile usare i generics per scrivere le classi una volta sola.
+// ...è possibile usare i generics per scrivere il codice delle classi una sola
+// volta, e poterlo poi riutilizzare per tutti i tipi di dati supportati.
 
 Tuple<int> esempio3 = new(1, 2);
 Tuple<string> esempio4 = new("hello", "world");
