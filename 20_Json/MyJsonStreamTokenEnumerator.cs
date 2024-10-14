@@ -71,9 +71,10 @@ public ref struct MyJsonStreamTokenEnumerator(Stream stream)
         {
             ReadOnlySpan<byte> leftover = _buffer.AsSpan((int)_reader.BytesConsumed);
 
+            byte[]? oldBuffer = null;
             if (leftover.Length == _buffer.Length)
             {
-                ArrayPool<byte>.Shared.Return(_buffer);
+                oldBuffer = _buffer;
 
                 _buffer = ArrayPool<byte>.Shared.Rent(_buffer.Length * 2);
 
@@ -86,6 +87,9 @@ public ref struct MyJsonStreamTokenEnumerator(Stream stream)
             leftover.CopyTo(_buffer);
 
             bufferOffset = leftover.Length;
+
+            if (oldBuffer is not null)
+                ArrayPool<byte>.Shared.Return(oldBuffer);
 
             int fillFrom = bufferOffset;
             while (fillFrom < _buffer.Length)
